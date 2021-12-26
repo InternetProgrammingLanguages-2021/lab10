@@ -27,10 +27,8 @@ class App extends React.Component {
             numbers: this.state.numbers
         })
     }.bind(this)
-    fetchLongestChunk = function () {
-        fetch(`/chunks/index?q=${this.state.numbers.map(number => number.value).join(',')}`)
-            .then(value => value.json())
-            .then(value => this.setState({...this.state, result:value}))
+    fetchLongestChunk = async function () {
+        location.href = `/chunks/index?q=${this.state.numbers.map(number => number.value).join(',')}`
     }.bind(this)
     render() {
         const disabled = this.state.numbers.length === 0 ||
@@ -55,67 +53,6 @@ class App extends React.Component {
                             <Button color="danger" style={{marginLeft: "20px", marginTop: "15px"}} onClick={() => this.deleteNumber(index)}>Удалить</Button>
                         </div>)}
                     </Panel>
-                    {this.state.result?this.state.result.max_length?<Panel>
-                        <Tabs>
-                            <Tab label="Ввод">
-                                <div className="mui--text-title" style={{margin: "20px 0"}}>Введенные данные</div>
-                                <table className="mui-table mui-table--bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Введенное число</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {this.state.result.input.map((value, index) => <tr key={index}>
-                                        <td style={{fontWeight: "bold"}}>{index + 1}</td>
-                                        <td>{value}</td>
-                                    </tr>)}
-                                    </tbody>
-                                </table>
-                            </Tab>
-                            <Tab label="Вывод">
-                                <div className="mui--text-title" style={{margin: "20px 0"}}>Возрастающие последовательности</div>
-                                <table className="mui-table mui-table--bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>##</th>
-                                        <th>Число последовательности</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {this.state.result.chunks.map((chunk, chunkIndex) => <React.Fragment key={chunkIndex}>
-                                        {chunk.map((value, index) => <tr key={index}>
-                                            {(index === 0)?<td style={{fontWeight: "bold"}} rowSpan={chunk.length}>{chunkIndex + 1}</td>:<></>}
-                                            <td style={{fontWeight: "bold"}}>{index + 1}</td>
-                                            <td>{value}</td>
-                                        </tr>)}
-                                    </React.Fragment>)}
-                                    </tbody>
-                                </table>
-                            </Tab>
-                            <Tab label="Ответ">
-                                <div className="mui--text-title" style={{margin: "20px 0"}}>Самая длинная возрастающая последовательность</div>
-                                <table className="mui-table mui-table--bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Число</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {this.state.result.max_length.map((value, index) => <tr key={index}>
-                                        <td style={{fontWeight: "bold"}}>{index + 1}</td>
-                                        <td>{value}</td>
-                                    </tr>)}
-                                    </tbody>
-                                </table>
-                            </Tab>
-                        </Tabs>
-                    </Panel>:<Panel>
-                        <div className="mui--text-title" style={{margin: "20px 0"}}>Необходимо ввести данные!</div>
-                    </Panel>:<></>}
                 </Container>
             </React.Fragment>
         );

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="template.xsl"?>
+<hash>
+  <input type="array">
+    <input type="float">0.0</input>
+    <input type="float">1.0</input>
+    <input type="float">2.0</input>
+    <input type="float">1.0</input>
+    <input type="float">2.0</input>
+  </input>
+  <chunks type="array">
+    <chunk type="array">
+      <chunk type="float">0.0</chunk>
+      <chunk type="float">1.0</chunk>
+      <chunk type="float">2.0</chunk>
+    </chunk>
+    <chunk type="array">
+      <chunk type="float">1.0</chunk>
+      <chunk type="float">2.0</chunk>
+    </chunk>
+  </chunks>
+  <max-length type="array">
+    <max-length type="float">0.0</max-length>
+    <max-length type="float">1.0</max-length>
+    <max-length type="float">2.0</max-length>
+  </max-length>
+</hash>

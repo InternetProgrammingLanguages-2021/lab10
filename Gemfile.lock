@@ -203,6 +203,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activesupport
   bootsnap (>= 1.4.4)
   capybara (>= 3.26)
   debug (>= 1.0.0)
